@@ -1,0 +1,80 @@
+import base64
+
+# Path to the original uploaded JPG
+image_path = "/mnt/data/IMG_20250501_181617_359.jpg"
+
+# Read and encode the image in base64
+with open(image_path, "rb") as img_file:
+    img_base64 = base64.b64encode(img_file.read()).decode('utf-8')
+
+# Simple HTML template
+html_code = f"""
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anup Raj Portfolio</title>
+    <style>
+        body {{
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }}
+        .profile-img {{
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }}
+        .links {{
+            margin-top: 20px;
+        }}
+        .links a {{
+            display: inline-flex;
+            align-items: center;
+            margin: 10px;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: white;
+            background-color: #333;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: 0.3s;
+        }}
+        .links a:hover {{
+            background-color: #555;
+        }}
+        .links img {{
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+        }}
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to Anup Raj's Page</h1>
+    <img src="data:image/jpeg;base64,{img_base64}" alt="Profile Image" class="profile-img">
+
+    <div class="links">
+        <a href="https://github.com/" target="_blank">
+            <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo"> GitHub
+        </a>
+        <a href="http://www.youtube.com/@Anuprajmobilecare" target="_blank" style="background-color: red;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube Logo"> YouTube
+        </a>
+    </div>
+
+</body>
+</html>
+"""
+
+# Save HTML file
+html_file_path = "/mnt/data/anup_raj_profile.html"
+with open(html_file_path, "w", encoding="utf-8") as file:
+    file.write(html_code)
+
+html_file_path
